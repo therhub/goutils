@@ -1,4 +1,4 @@
-module therhub/goutils
+module github.com/therhub/goutils
 
 go 1.13
 
