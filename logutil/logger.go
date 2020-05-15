@@ -27,7 +27,7 @@ func write(m, lt, s string) error {
 	f := fmt.Sprintf("%slog%s.log", logpath, t.Format("2006010215"))
 
 	// get log format
-	out := fmt.Sprintf("\r\n#id:%v\r\n#timestamp:%v;\r\n#module:%s;\r\n#logtype:%s;\r\n#time:%v;\r\n#content:%v;\r\n", stringutil.NewID(), t.Unix(), m, lt, t.Format("2006-01-02 15:04:05"), s)
+	out := fmt.Sprintf("\r\n#id:%v\r\n#timestamp:%v;\r\n#module:%s;\r\n#logtype:%s;\r\n#time:%v;\r\n#content:%v;\r\n", stringutil.CreateNewId(), t.Unix(), m, lt, t.Format("2006-01-02 15:04:05"), s)
 
 	file, err := os.OpenFile(f, os.O_APPEND|os.O_CREATE, os.ModePerm)
 

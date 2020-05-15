@@ -1,11 +1,13 @@
 package stringutil
 
-import "testing"
+import (
+	"testing"
+)
 
-func TestNewID(t *testing.T) {
+func TestGetNewId(t *testing.T) {
 
-	var r = NewID()
-	if r == 0 {
-		t.Errorf("result:%v", r)
+	var r, err = GetNewId()
+	if r == 0 || err != nil {
+		t.Errorf("result:%v,err:%v", r, err)
 	}
 }
