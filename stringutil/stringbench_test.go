@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func Benchmark_GetNewId(b *testing.B) {
+func Benchmark_TryCreateNewId(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		GetNewId()
+		TryCreateNewId()
 	}
 }
