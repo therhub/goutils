@@ -28,6 +28,7 @@ type IdCreator struct {
 }
 
 // singleton instance
+// 1577808000000=2020-01-01 00:00:00
 var mIdCreator = &IdCreator{
 	startTime:             1577808000000,
 	workerIdBits:          5,
