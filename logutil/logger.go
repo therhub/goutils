@@ -5,13 +5,14 @@ import (
 	"os"
 	"time"
 
-	"github.com/therhub/goutils/stringutil"
+	"github.com/therhub/goutils/idutil"
 )
 
 var logpath string
 
 // write log to file
 // m is module Name,
+// lt is log type
 // s is content
 // to get log
 func write(m, lt, s string) error {
@@ -27,7 +28,7 @@ func write(m, lt, s string) error {
 	f := fmt.Sprintf("%slog%s.log", logpath, t.Format("2006010215"))
 
 	// get log format
-	out := fmt.Sprintf("\r\n#id:%v\r\n#timestamp:%v;\r\n#module:%s;\r\n#logtype:%s;\r\n#time:%v;\r\n#content:%v;\r\n", stringutil.CreateNewId(), t.Unix(), m, lt, t.Format("2006-01-02 15:04:05"), s)
+	out := fmt.Sprintf("\r\n#id:%v\r\n#timestamp:%v;\r\n#module:%s;\r\n#logtype:%s;\r\n#time:%v;\r\n#content:%v;\r\n", idutil.CreateNewId(), t.Unix(), m, lt, t.Format("2006-01-02 15:04:05"), s)
 
 	file, err := os.OpenFile(f, os.O_APPEND|os.O_CREATE, os.ModePerm)
 
@@ -51,4 +52,9 @@ func SetLogPath(p string) {
 // system log
 func SystemLog(lt, s string) error {
 	return write("sys", lt, s)
+}
+
+// error log
+func ErrorLog(err error) error {
+	return write("err", "err", fmt.Sprintf("%s", err))
 }
