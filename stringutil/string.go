@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
-
-	"github.com/therhub/goutils/logutil"
 )
 
 // string reverse
@@ -35,7 +33,7 @@ func ToJson(d interface{}) string {
 	r, err := json.Marshal(d)
 
 	if err != nil {
-		logutil.ErrorLog(err)
+		return ""
 	}
 
 	return string(r)
