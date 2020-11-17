@@ -80,12 +80,11 @@ func CreateNewId() int64 {
 func (c *IdCreator) newId() (int64, error) {
 
 	c.mLock.Lock()
+	defer c.mLock.Unlock()
 
 	timestamp := time.Now().UnixNano() / int64(time.Millisecond)
 
 	if timestamp < c.lastTimestamp {
-
-		c.mLock.Unlock()
 
 		return -1, errors.New(fmt.Sprintf("create id error, for %d milliseconds", timestamp))
 	}
@@ -104,8 +103,6 @@ func (c *IdCreator) newId() (int64, error) {
 	}
 
 	c.lastTimestamp = timestamp
-
-	c.mLock.Unlock()
 
 	// 0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000
 	// first is zero

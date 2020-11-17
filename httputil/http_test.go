@@ -17,7 +17,7 @@ func TestGetEncoding(t *testing.T) {
 		args args
 		want encoding.Encoding
 	}{
-		{name: "test1", args: &io.ReadCloser{}}, {want: encoding.ASCIISub},
+		// {name: "test1", args: &io.ReadCloser{}}, {want: encoding.ASCIISub},
 		// TODO: Add test cases.
 	}
 	for _, tt := range tests {
